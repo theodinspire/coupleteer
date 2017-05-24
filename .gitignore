@@ -130,3 +130,6 @@ Temporary Items
 .apdisk
 
 # End of https://www.gitignore.io/api/macos
+
+rhymingDictionary.ser
+/src/main/resources/*/*.xml
