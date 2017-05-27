@@ -8,28 +8,124 @@ import java.util.*;
  */
 public class App 
 {
-    public static void main( String[] args ) {
-        RhymeDictionary rhymer = new RhymeDictionary("/data/smalldict.txt", false);
+    static final int DEFAULT_ATTEMPTS = 100;
+    static final Set<String> PARTICLES = new HashSet<String>(
+            Arrays.asList(new String[] { Tags.CC, Tags.DET, Tags.IN, Tags.MD, Tags.PRP, Tags.PRPS, Tags.RP, Tags.TO }));
     
-        Set<Rhythm> rhythmSet = new HashSet<>();
+    public static void main( String[] args ) {
+        WordHoardHandler handler = WordHoardHandler.pullFromFile();
+        RhymeDictionary dictionary = handler.getRhymeDictionary();
+        Emissor<String, String> words = handler.getWordEmissor();
+        Emissor<String, String> posses = handler.getPosEmissor();
+        Emissor<String, String> fore = handler.getForeBigram();
+        Emissor<String, String> back = handler.getBackBigram();
+    
+        //  First Line!
+        int syllablesLeft = 11;
+        String oldpos = Tags.getStartOfLine();
+        StringBuilder line = new StringBuilder();
+        Word lastWord = null;
+
+        while (syllablesLeft > 0) {
+            Word word = null;
+            int pickNewPos = DEFAULT_ATTEMPTS;
+            String newpos = fore.getCounter(oldpos).getRandom();
+    
+            if (!newpos.matches("\\w+\\$?")) {
+                word = new DummyWord(newpos);
+            }
+    
+            while (word == null) {
+                --pickNewPos;
+                boolean firstAccent = syllablesLeft % 2 == 0;
+                String str = words.getCounter(newpos).getRandom();
         
-        Set<Word> words = rhymer.getWords();
-        System.out.println("Word count: " + words.size());
+                Set<Word> options = dictionary.getWordsByString(str);
         
-        for (Word word : words) {
-            Rhythm rhythm = word.getRhythm();
-            rhythmSet.add(rhythm);
+                for (Word option : options) {
+                    Rhythm rhythm = option.getRhythm();
+                    if (rhythm.size() == 0 || (rhythm.size() == 1 && PARTICLES.contains(newpos))
+                        || (rhythm.getFirst() > 0 == firstAccent && rhythm.size() <= syllablesLeft)) {
+                        word = option;
+                        break;
+                    }
+                }
+        
+                if (pickNewPos == 0) {
+                    newpos = fore.getCounter(oldpos).getRandom();
+                    pickNewPos = DEFAULT_ATTEMPTS;
+                }
+            }
+    
+            oldpos = newpos;
+            line.append(word).append(" ");
+    
+            lastWord = word;
+            syllablesLeft -= word.getRhythm().size();
+            if (syllablesLeft == 1) break;
+        }
+        //  End of first line
+        line.append("\n");
+        
+        //  Second line!
+        syllablesLeft = 11 - syllablesLeft; // If feminine ending was made
+            // there would be no syllables left, and so we must make another
+        List<Word> rhymes = new ArrayList<>(dictionary.get(lastWord.getRhyme()));
+        Word rhyme;
+        int attempts = DEFAULT_ATTEMPTS;
+        
+        do {
+            rhyme = rhymes.get(Utilities.getRandomInt(rhymes.size()));
+            --attempts;
+        }
+        while (!posses.getKeys().contains(rhyme.toString())
+                && rhyme.equals(lastWord) && attempts > 0);
+        
+        syllablesLeft -= rhyme.getRhythm().size();
+        Stack<Word> wordStack = new Stack<>();
+        wordStack.push(rhyme);
+        
+        oldpos = posses.getCounter(lastWord.toString()).getRandom();
+        
+        while (syllablesLeft > 0) {
+            Word word = null;
+            int pickNewPos = DEFAULT_ATTEMPTS;
+            String newpos = back.getCounter(oldpos).getRandom();
+    
+            if (!newpos.matches("\\w+\\$?")) {
+                word = new DummyWord(newpos);
+            }
+    
+            while (word == null) {
+                --pickNewPos;
+                boolean lastAccent = syllablesLeft % 2 == 0;
+                String str = words.getCounter(newpos).getRandom();
+        
+                Set<Word> options = dictionary.getWordsByString(str);
+        
+                for (Word option : options) {
+                    Rhythm rhythm = option.getRhythm();
+                    if (rhythm.size() == 0 || (rhythm.size() == 1 && PARTICLES.contains(newpos))
+                        || (rhythm.getLast() > 0 == lastAccent && rhythm.size() <= syllablesLeft)) {
+                        word = option;
+                        break;
+                    }
+                }
+        
+                if (pickNewPos == 0) {
+                    newpos = back.getCounter(oldpos).getRandom();
+                    pickNewPos = DEFAULT_ATTEMPTS;
+                }
+            }
+    
+            oldpos = newpos;
+            wordStack.push(word);
+    
+            syllablesLeft -= word.getRhythm().size();
         }
         
-        for (Word word : rhymer.getWordsByString("effect")) System.out.println(word);
-    
-//        List<Rhythm> rhythms = new LinkedList<>();
-//        rhythms.addAll(rhythmSet);
-//        rhythms.sort(Comparator.comparingInt(LinkedList::size));
-//
-//        for (Rhythm rhythm : rhythms) {
-//            rhythm.forEach(System.out::print);
-//            System.out.println();
-//        }
+        while (!wordStack.isEmpty()) line.append(wordStack.pop()).append(" ");
+        
+        System.out.println(line.toString());
     }
 }

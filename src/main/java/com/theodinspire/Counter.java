@@ -1,12 +1,13 @@
 package com.theodinspire;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Created by corms on 5/23/17.
  */
 
-public class Counter<T> {
+public class Counter<T> implements Serializable {
     protected Map<T, Integer> map = new HashMap<>();
     protected int size = 0;
     protected int base = 1;

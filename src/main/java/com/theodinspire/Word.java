@@ -7,8 +7,8 @@ import java.util.*;
  * Created by corms on 5/21/17.
  */
 public class Word extends Rhymable implements Serializable {
+    //static final long serialVersionUID = "Word 170526".hashCode();
     private Rhyme rhyme;
-    private String pos = "";
     
     protected Word(String self) { this.self = self; }
     
@@ -47,15 +47,15 @@ public class Word extends Rhymable implements Serializable {
     @Override
     public Rhyme getRhyme() { return rhyme; }
     
-    public void setPos(String pos) { this.pos = pos; }
-    
     //  Main
     public static void main(String[] args) {
-        LinkedList<String> bookLine = new LinkedList<>(Arrays.asList("BOOK  B UH1 K".split("\\s")));
-        LinkedList<String> lookLine = new LinkedList<>(Arrays.asList("LOOK  L UH1 K".split("\\s")));
+        LinkedList<String> bookLine = new LinkedList<>(Arrays.asList("BOOK  B UH1 K".split("\\s+")));
+        LinkedList<String> lookLine = new LinkedList<>(Arrays.asList("LOOK  L UH1 K".split("\\s+")));
+        LinkedList<String> cliticLine = new LinkedList<>(Arrays.asList("'S  Z".split("\\s+")));
         
         Word book = new Word(bookLine);
         Word look = new Word(lookLine);
+        Word clitic = new Word(cliticLine);
         
         System.out.println(book.getRhyme().hashCode());
         System.out.println(look.getRhyme().hashCode());
@@ -65,5 +65,7 @@ public class Word extends Rhymable implements Serializable {
         rhymes.add(book.getRhyme());
         rhymes.add(look.getRhyme());
         System.out.println(rhymes.size());
+        
+        System.out.println(clitic.getRhythm().size());
     }
 }

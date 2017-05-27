@@ -131,5 +131,5 @@ Temporary Items
 
 # End of https://www.gitignore.io/api/macos
 
-rhymingDictionary.ser
+*.ser
 /src/main/resources/*/*.xml

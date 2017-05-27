@@ -8,6 +8,8 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -19,6 +21,10 @@ public class Utilities {
     
     static private Random rando = new Random();
     
+    //  Random
+    static int getRandomInt(int max) { return rando.nextInt(max); }
+    
+    //  IO
     static BufferedReader getBufferedResourceReader(String path) throws IOException {
         return new BufferedReader(new InputStreamReader(Utilities.class.getResourceAsStream(path)));
     }
@@ -35,24 +41,28 @@ public class Utilities {
         }
     }
     
-    static int getRandomInt(int max) { return rando.nextInt(max); }
-    
-    public static void main(String[] args) {
-        SAXParserFactory factory = SAXParserFactory.newInstance();
-        factory.setValidating(true);
+    static List<String> getResourceFiles(String resourcePath) {
+        List<String> list = new ArrayList<>();
         
-        try {
-            SAXParser parser = factory.newSAXParser();
-            InputStream stream = Utilities.class.getResourceAsStream("/texts/son.xml");
+        try (BufferedReader rdr = getBufferedResourceReader(resourcePath)) {
+            String fileName;
             
-            parser.parse(stream, new DefaultHandler());
-            
+            while ((fileName = rdr.readLine()) != null) {
+                list.add(resourcePath + fileName);
+            }
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
         }
+        
+        return list;
+    }
+    
+    //  Main
+    public static void main(String[] args) {
+        String string = "o'ermaster't";
+        String[] split = string.split("(?='\\w+$)");
+        
+        System.out.println(split.length);
+        for (String str : split) System.out.println(str);
     }
 }
