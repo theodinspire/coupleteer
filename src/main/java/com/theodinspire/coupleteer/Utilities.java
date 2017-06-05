@@ -1,13 +1,6 @@
-package com.theodinspire;
+package com.theodinspire.coupleteer;
 
-import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -59,10 +52,9 @@ public class Utilities {
     
     //  Main
     public static void main(String[] args) {
-        String string = "o'ermaster't";
-        String[] split = string.split("(?='\\w+$)");
-        
-        System.out.println(split.length);
-        for (String str : split) System.out.println(str);
+        try {
+            File file = new File("");
+            System.out.println(file.getCanonicalPath());
+        } catch (Exception e) { e.printStackTrace(); }
     }
 }

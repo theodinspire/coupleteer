@@ -1,4 +1,4 @@
-package com.theodinspire;
+package com.theodinspire.coupleteer;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;

@@ -1,4 +1,4 @@
-package com.theodinspire;
+package com.theodinspire.coupleteer;
 
 import java.util.Arrays;
 import java.util.HashSet;
