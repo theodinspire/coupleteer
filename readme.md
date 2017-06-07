@@ -100,5 +100,6 @@ from back to front.
 
 <hr />
 ###### Footnotes
+
 1: In future iterations of Coupleteer, we will use the native WordHoard tags for
 POS tagging.
