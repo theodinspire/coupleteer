@@ -99,6 +99,7 @@ rhythm of the meter. The second line is the filled out like the first line, only
 from back to front.
 
 <hr />
-###### Footnotes
+##### Footnotes
+
 1: In future iterations of Coupleteer, we will use the native WordHoard tags for
 POS tagging.
