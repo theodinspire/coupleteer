@@ -119,7 +119,7 @@ public class RhymeDictionary extends HashMap<Rhyme, Set<Word>> implements Serial
     
     //  Main
     public static void main(String[] args) {
-        RhymeDictionary rhymer = new RhymeDictionary("/data/cmudict-0.7b.txt");
+        RhymeDictionary rhymer = new RhymeDictionary("/data/cmudict-0.7b.txt", true);
         
 //        for (Rhyme rhyme : rhymer.keySet()) {
 //            System.out.println(rhyme + ": " + rhymer.get(rhyme).size());
