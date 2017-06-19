@@ -131,5 +131,12 @@ Temporary Items
 
 # End of https://www.gitignore.io/api/macos
 
+#Developer Defined Ignores
 *.ser
+!/src/main/resources/data/rhymingDictionary.ser
+!/src/main/resources/data/wordHoard.ser
+
+
 /src/main/resources/*/*.xml
+/.idea/codeStyleSettings.xml
+/.idea/dbnavigator.xml
