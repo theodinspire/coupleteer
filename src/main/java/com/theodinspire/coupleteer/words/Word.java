@@ -1,4 +1,4 @@
-package com.theodinspire.coupleteer;
+package com.theodinspire.coupleteer.words;
 
 import java.io.Serializable;
 import java.util.*;
@@ -10,7 +10,7 @@ public class Word extends Rhymable implements Serializable {
     //static final long serialVersionUID = "Word 170526".hashCode();
     private Rhyme rhyme;
     
-    protected Word(String self) { this.self = self; }
+    public Word(String self) { this.self = self; }
     
     public Word(LinkedList<String> cmuEntry) {
         this.self = cmuEntry.poll().toLowerCase().replaceAll("\\(\\d+\\)", "");

@@ -1,4 +1,4 @@
-package com.theodinspire.coupleteer;
+package com.theodinspire.coupleteer.words;
 
 import java.io.Serializable;
 

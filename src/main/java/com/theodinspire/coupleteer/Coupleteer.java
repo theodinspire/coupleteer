@@ -1,5 +1,9 @@
 package com.theodinspire.coupleteer;
 
+import com.theodinspire.coupleteer.volumes.*;
+import com.theodinspire.coupleteer.words.*;
+import com.theodinspire.coupleteer.data.*;
+
 import java.util.*;
 
 /**
@@ -33,7 +37,9 @@ public class Coupleteer {
     
     
     //  Get couplets
-    public String getCouplet() {
+    public String[] getCouplet() {
+        String[] couplet = new String[2];
+        
         //  First Line!
         int syllablesLeft = 11;
         String oldpos = Tags.getStartOfLine();
@@ -79,7 +85,9 @@ public class Coupleteer {
             if (syllablesLeft == 1) break;
         }
         //  End of first line
-        line.append("\n");
+        couplet[0] = toInitialCapitalCase(line.toString());
+        
+        line = new StringBuilder();
     
         //  Second line!
         syllablesLeft = 11 - syllablesLeft; // If feminine ending was made
@@ -140,6 +148,21 @@ public class Coupleteer {
     
         while (!wordStack.isEmpty()) line.append(wordStack.pop()).append(" ");
         
-        return line.toString();
+        couplet[1] = toInitialCapitalCase(line.toString());
+        
+        return couplet;
+    }
+    
+    private String toInitialCapitalCase(String string) {
+        int index = -1;
+        for (int i = 0; i < string.length(); ++i) {
+            if (Character.isAlphabetic(string.charAt(i))) {
+                index = i + 1; // Seeking index after first letter
+                break;
+            }
+        }
+        
+        if (index < 0) return string;
+        else return string.substring(0, index).toUpperCase() + string.substring(index);
     }
 }

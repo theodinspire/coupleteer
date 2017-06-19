@@ -15,18 +15,18 @@ public class Utilities {
     static private Random rando = new Random();
     
     //  Random
-    static int getRandomInt(int max) { return rando.nextInt(max); }
+    static public int getRandomInt(int max) { return rando.nextInt(max); }
     
     //  IO
-    static BufferedReader getBufferedResourceReader(String path) throws IOException {
+    static public BufferedReader getBufferedResourceReader(String path) throws IOException {
         return new BufferedReader(new InputStreamReader(Utilities.class.getResourceAsStream(path)));
     }
     
-    static BufferedReader getBufferedFileReader(String path) throws IOException {
+    static public BufferedReader getBufferedFileReader(String path) throws IOException {
         return new BufferedReader(new FileReader(path));
     }
     
-    static BufferedReader getBufferedReader(String path) throws IOException {
+    static public BufferedReader getBufferedReader(String path) throws IOException {
         try {
             return getBufferedResourceReader(path);
         } catch (Exception e) {
@@ -34,7 +34,7 @@ public class Utilities {
         }
     }
     
-    static List<String> getResourceFiles(String resourcePath) {
+    static public List<String> getResourceFiles(String resourcePath) {
         List<String> list = new ArrayList<>();
         
         try (BufferedReader rdr = getBufferedResourceReader(resourcePath)) {

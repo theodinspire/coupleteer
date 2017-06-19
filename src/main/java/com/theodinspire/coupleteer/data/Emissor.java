@@ -1,4 +1,4 @@
-package com.theodinspire.coupleteer;
+package com.theodinspire.coupleteer.data;
 
 import java.io.Serializable;
 import java.util.*;

@@ -1,4 +1,4 @@
-package com.theodinspire.coupleteer;
+package com.theodinspire.coupleteer.words;
 
 /**
  * Created by corms on 5/23/17.

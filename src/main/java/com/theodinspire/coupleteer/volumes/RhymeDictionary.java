@@ -1,4 +1,7 @@
-package com.theodinspire.coupleteer;
+package com.theodinspire.coupleteer.volumes;
+
+import com.theodinspire.coupleteer.*;
+import com.theodinspire.coupleteer.words.*;
 
 import java.io.*;
 import java.util.*;

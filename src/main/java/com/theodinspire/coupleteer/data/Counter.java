@@ -1,4 +1,6 @@
-package com.theodinspire.coupleteer;
+package com.theodinspire.coupleteer.data;
+
+import com.theodinspire.coupleteer.*;
 
 import java.io.Serializable;
 import java.util.*;
@@ -55,4 +57,9 @@ public class Counter<T> implements Serializable {
         
         return null;
     }
+    
+    public void setBase(int base) { this.base = base; }
+    public int getBase() { return base; }
+    
+    public int getSize() { return size; }
 }

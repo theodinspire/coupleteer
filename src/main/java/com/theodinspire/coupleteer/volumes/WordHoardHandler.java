@@ -1,5 +1,8 @@
-package com.theodinspire.coupleteer;
+package com.theodinspire.coupleteer.volumes;
 
+import com.theodinspire.coupleteer.*;
+import com.theodinspire.coupleteer.words.*;
+import com.theodinspire.coupleteer.data.*;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -225,7 +228,7 @@ public class WordHoardHandler extends DefaultHandler implements Serializable {
         list.sort(Comparator.naturalOrder());
         
         for (String item : list) {
-            System.out.println(item + " -> " + emissor.getCounter(item).size);
+            System.out.println(item + " -> " + emissor.getCounter(item).getSize());
         }
         
         System.out.println();

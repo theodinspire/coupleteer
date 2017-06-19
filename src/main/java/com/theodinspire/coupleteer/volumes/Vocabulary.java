@@ -1,4 +1,8 @@
-package com.theodinspire.coupleteer;
+package com.theodinspire.coupleteer.volumes;
+
+import com.theodinspire.coupleteer.*;
+import com.theodinspire.coupleteer.words.*;
+import com.theodinspire.coupleteer.data.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
