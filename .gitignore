@@ -133,3 +133,5 @@ Temporary Items
 
 *.ser
 /src/main/resources/*/*.xml
+/.idea/codeStyleSettings.xml
+/.idea/dbnavigator.xml
