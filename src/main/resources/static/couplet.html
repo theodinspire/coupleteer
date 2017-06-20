@@ -13,7 +13,7 @@
         width: 100%;
       }
 
-      .couplet, .loader {
+      #couplet, .loader {
         display: block;
         left: 50%;
         position: absolute;
@@ -21,7 +21,7 @@
         transform: translateX(-50%) translateY(-50%);
       }
 
-      .couplet {
+      #couplet {
         color: rgba(255, 255, 255, 0.75);
         display: block;
         font-size: 1em;
@@ -37,12 +37,13 @@
         opacity: 1;
         padding: 0;
         margin: 0;
+        transform: translateX(0);
         transition: opacity 180ms ease, transform 240ms ease;
-        transition-delay: 0ms;
+        transition-delay: 180ms;
       }
 
       .couplet-line:nth-child(2) {
-        transition-delay: 180ms;
+        transition-delay: 360ms;
       }
 
       .loader {
@@ -51,7 +52,7 @@
         position: absolute;
         top: 50%;
         transform: translateX(-50%) translateY(-50%);
-        transition: opacity 60ms ease-in;
+        transition: opacity 30ms ease-in;
       }
 
       .loader-line {
@@ -60,6 +61,7 @@
         animation-fill-mode: both;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
+		opacity: 0;
       }
 
       .loader-line:nth-child(2) {
@@ -92,6 +94,7 @@
 
       .loading .couplet-line {
         opacity: 0;
+        transform: translateX(-2em);
         transition-delay: 180ms;
       }
 
@@ -101,6 +104,7 @@
 
       .loading .loader {
         opacity: 0.75;
+        transition-duration: 60ms;
       }
 
       .loading .loader-line {
