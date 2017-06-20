@@ -4,7 +4,7 @@
 
   <groupId>com.theodinspire</groupId>
   <artifactId>coupleteer</artifactId>
-  <version>0.2</version>
+  <version>0.3</version>
   <packaging>jar</packaging>
 
   <name>coupleteer</name>
@@ -51,6 +51,18 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Jayway -->
+    <dependency>
+      <groupId>com.jayway.jsonpath</groupId>
+      <artifactId>json-path</artifactId>
+      <scope>test</scope>
+    </dependency>
 
     <!-- BootStrap -->
     <dependency>
@@ -78,22 +90,6 @@
         </configuration>
       </plugin>
 
-      <!-- Maven Settings -->
-      <!--
-      <plugin>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>3.0.2</version>
-        <configuration>
-          <archive>
-            <manifest>
-              <addClasspath>true</addClasspath>
-              <mainClass>com.theodinspire.coupleteer.App</mainClass>
-            </manifest>
-          </archive>
-        </configuration>
-      </plugin>
-      -->
-
       <!-- Spring Framework Build Settings -->
       <plugin>
         <groupId>org.springframework.boot</groupId>
@@ -101,4 +97,18 @@
       </plugin>
     </plugins>
   </build>
+
+  <repositories>
+    <repository>
+      <id>spring-releases</id>
+      <url>https://repo.spring.io/libs-release</url>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>spring-releases</id>
+      <url>https://repo.spring.io/libs-release</url>
+    </pluginRepository>
+  </pluginRepositories>
 </project>
