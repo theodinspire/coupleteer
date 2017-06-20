@@ -37,7 +37,7 @@ public class Coupleteer {
     
     
     //  Get couplets
-    public String[] getCouplet() {
+    public Couplet getCouplet() {
         String[] couplet = new String[2];
         
         //  First Line!
@@ -85,7 +85,7 @@ public class Coupleteer {
             if (syllablesLeft == 1) break;
         }
         //  End of first line
-        couplet[0] = toInitialCapitalCase(line.toString());
+        String first = toInitialCapitalCase(line.toString());
         
         line = new StringBuilder();
     
@@ -148,9 +148,9 @@ public class Coupleteer {
     
         while (!wordStack.isEmpty()) line.append(wordStack.pop()).append(" ");
         
-        couplet[1] = toInitialCapitalCase(line.toString());
+        String second = toInitialCapitalCase(line.toString());
         
-        return couplet;
+        return new Couplet(first, second);
     }
     
     private String toInitialCapitalCase(String string) {

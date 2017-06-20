@@ -21,8 +21,8 @@ public class App
         
         if (coupletsToPrint > 0) {
             for (int i = 0; i < coupletsToPrint; ++i) {
-                String[] couplet = coupleteer.getCouplet();
-                System.out.println(couplet[ 0 ] + "\n" + couplet[ 1 ] + "\n");
+                Couplet couplet = coupleteer.getCouplet();
+                System.out.println(couplet);
             }
         } else {
             try (BufferedReader console = new BufferedReader(new InputStreamReader(System.in))) {

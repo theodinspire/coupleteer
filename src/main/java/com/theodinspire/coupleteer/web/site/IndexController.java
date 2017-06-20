@@ -1,5 +1,6 @@
 package com.theodinspire.coupleteer.web.site;
 
+import com.theodinspire.coupleteer.Couplet;
 import com.theodinspire.coupleteer.Coupleteer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 
 @Controller
-public class CoupletController {
+public class IndexController {
     
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model) {
-        String[] coupletLines = Coupleteer.getInstance().getCouplet();
-        String couplet = coupletLines[0] + "<br />" + coupletLines[1];
+        Couplet couplet = Coupleteer.getInstance().getCouplet();
+        String string = couplet.toStringWithDelimiter("<br />");
         
-        model.addAttribute("couplet", couplet);
+        model.addAttribute("couplet", string);
         
         return "index";
     }
