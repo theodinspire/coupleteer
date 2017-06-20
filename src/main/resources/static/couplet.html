@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Couplets!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+      body, html {
+        background: #66023C;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        width: 100%;
+      }
+
+      .couplet, .loader {
+        display: block;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+      }
+
+      .couplet {
+        color: rgba(255, 255, 255, 0.75);
+        display: block;
+        font-size: 1em;
+        line-height: 1.4em;
+        padding: 0 1.4em;
+        position: absolute;
+        max-width: 100%;
+        width: 320px;
+      }
+
+      .couplet-line {
+        display: block;
+        opacity: 1;
+        padding: 0;
+        margin: 0;
+        transition: opacity 180ms ease, transform 240ms ease;
+        transition-delay: 0ms;
+      }
+
+      .couplet-line:nth-child(2) {
+        transition-delay: 180ms;
+      }
+
+      .loader {
+        left: 50%;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        transition: opacity 60ms ease-in;
+      }
+
+      .loader-line {
+        animation-delay: 0ms;
+        animation-duration: 1440ms;
+        animation-fill-mode: both;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+
+      .loader-line:nth-child(2) {
+        animation-delay: 180ms;
+      }
+
+      .loader-line:nth-child(3) {
+        animation-delay: 360ms;
+      }
+
+      .loader-line:nth-child(4) {
+        animation-delay: 540ms;
+      }
+
+      .loader-line:nth-child(5) {
+        animation-delay: 720ms;
+      }
+
+      .loader-line:nth-child(6) {
+        animation-delay: 900ms;
+      }
+
+      .loader-line:nth-child(7) {
+        animation-delay: 1080ms;
+      }
+
+      .loader-line:nth-child(8) {
+        animation-delay: 1260ms;
+      }
+
+      .loading .couplet-line {
+        opacity: 0;
+        transition-delay: 180ms;
+      }
+
+      .loading .couplet-line:nth-child(2) {
+        transition-delay: 0ms;
+      }
+
+      .loading .loader {
+        opacity: 0.75;
+      }
+
+      .loading .loader-line {
+        animation-name: loadLine;
+      }
+
+      @keyframes loadLine {
+        0% {
+          opacity: 0;
+        }
+
+        6.25% {
+          opacity: 1;
+        }
+
+        37.5% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @media (min-width: 480px) {
+        .loader {
+          height: 50vw;
+          width: 50vw;
+        }
+      }
+
+      @media (min-width: 640px) {
+        .loader {
+          height: 320px;
+          width: 320px;
+        }
+      }
+    </style>
+</head>
+<body class='loading'>
+<p id='couplet'>
+    <span class='couplet-line'></span>
+    <span class='couplet-line'></span>
+</p>
+<svg class='loader' height='128' width='128' viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg' stroke='white' stroke-linecap='round' stroke-width='4'>
+    <line class='loader-line' x1='64' y1='56' x2='64' y2='8' />
+    <line class='loader-line' x1='69.66' y1='58.34' x2='103.6' y2='24.4' />
+    <line class='loader-line' x1='72' y1='64' x2='120' y2='64' />
+    <line class='loader-line' x1='69.66' y1='69.66' x2='103.6' y2='103.6' />
+    <line class='loader-line' x1='64' y1='72' x2='64' y2='120' />
+    <line class='loader-line' x1='58.34' y1='69.66' x2='24.4' y2='103.6' />
+    <line class='loader-line' x1='56' y1='64' x2='8' y2='64' />
+    <line class='loader-line' x1='58.34' y1='58.34' x2='24.4' y2='24.4' />
+</svg>
+
+<script type='text/javascript'>
+      document.addEventListener('DOMContentLoaded', function () {
+        var coupletLine1, coupletLine2;
+
+        coupletLine1 = document.getElementById('couplet');
+        coupletLine2 = coupletLine1.children[1];
+        coupletLine1 = coupletLine1.children[0];
+
+        fetch('/api/couplet').then(function (res) {
+          res.json().then(function (data) {
+            document.body.className = null;
+            coupletLine1.textContent = data.first;
+            coupletLine2.textContent = data.second;
+          });
+        })
+      })
+    </script>
+</body>
+</html>
