@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8" />
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css"
+          rel="stylesheet" media="screen" />
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/3.2.1/jquery.min.js"></script>
+
+    <style type='text/css'>
+          #couplet {
+            //color: rgba(255, 255, 255, 0.75);
+            display: block;
+            margin-bottom: 5px;
+            //font-size: 1em;
+            //line-height: 1.4em;
+            //padding: 0 1.4em;
+            //position: absolute;
+            //max-width: 100%;
+            //width: 320px;
+          }
+
+          .couplet-line {
+            display: block;
+            opacity: 1;
+            padding: 0;
+            margin: 0;
+            transform: translateX(0);
+            transition: opacity 180ms ease, transform 240ms ease;
+            //transition-delay: 180ms;
+          }
+
+          .couplet-line:nth-child(2) {
+            //transition-delay: 360ms;
+            transition-delay: 180ms;
+          }
+
+          .loading .couplet-line {
+            opacity: 0;
+            transform: translateX(-25vw);
+            transition-delay: 180ms;
+          }
+
+          .loading .couplet-line:nth-child(2) {
+            transition-delay: 0ms;
+          }
+        </style>
+    <title>Coupleteer</title>
+</head>
+<body class="loading">
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Coupleteer</a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="jumbotron">
+        <p id='couplet'>
+            <span class='couplet-line'>&nbsp;</span>
+            <span class='couplet-line'>&nbsp;</span>
+        </p>
+    </div>
+<script type='text/javascript'>
+      document.addEventListener('DOMContentLoaded', function () {
+        var coupletLine1, coupletLine2;
+
+        coupletLine1 = document.getElementById('couplet');
+        coupletLine2 = coupletLine1.children[1];
+        coupletLine1 = coupletLine1.children[0];
+
+        fetch('http://localhost:8080/api/couplet').then(function (res) {
+          res.json().then(function (data) {
+            document.body.className = null;
+            coupletLine1.textContent = data.first;
+            coupletLine2.textContent = data.second;
+          });
+        })
+      })
+</script>
+</body>
+</html>
