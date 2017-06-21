@@ -11,24 +11,36 @@
 
     <title>Coupleteer</title>
 </head>
-<body>
-<nav class="navbar navbar-inverse">
+<body class="loading">
+<nav class="navbar">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
             <a class="navbar-brand" href="#">Coupleteer</a>
         </div>
     </div>
 </nav>
-<div class="container">
-    <div class="jumbotron">
-        <h2 th:utext="${couplet}" />
-    </div>
+<div class="jumbotron">
+    <p id='couplet'>
+        <span class='couplet-line'> </span>
+        <span class='couplet-line'> </span>
+    </p>
 </div>
+<script type='text/javascript'>
+      document.addEventListener('DOMContentLoaded', function () {
+        var coupletLine1, coupletLine2;
+
+        coupletLine1 = document.getElementById('couplet');
+        coupletLine2 = coupletLine1.children[1];
+        coupletLine1 = coupletLine1.children[0];
+
+        fetch('/api/couplet').then(function (res) {
+          res.json().then(function (data) {
+            document.body.className = null;
+            coupletLine1.textContent = data.first;
+            coupletLine2.textContent = data.second;
+          });
+        })
+      })
+</script>
 </body>
 </html>
