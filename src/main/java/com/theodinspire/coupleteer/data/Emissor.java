@@ -41,4 +41,18 @@ public class Emissor<K, V> implements Serializable {
     public List<K> getKeysAsList() {
         return new LinkedList<>(getKeys());
     }
+    
+    public K getRandomKeyForValueWithDefault(V value, K defaultKey) {
+        Counter<K> counter = new Counter<>();
+        
+        for (K key : getKeys()) {
+            Counter<V> valueCounter = getCounter(key);
+            if (valueCounter.getKeySet().contains(value)) {
+                counter.countWithWeight(key, valueCounter.getCount(value));
+            }
+        }
+        
+        if (counter.getSize() > 0) return counter.getRandom();
+        else return defaultKey;
+    }
 }

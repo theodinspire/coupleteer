@@ -3,10 +3,6 @@ package com.theodinspire.coupleteer;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
     public static void main( String[] args ) {
@@ -26,7 +22,7 @@ public class App
             }
         } else {
             try (BufferedReader console = new BufferedReader(new InputStreamReader(System.in))) {
-                System.out.println("Pres \"Enter\" to continue, type \"Quit\" to exit");
+                System.out.println("Press \"Enter\" to continue, type \"Quit\" to exit");
                 System.out.println();
     
                 do {

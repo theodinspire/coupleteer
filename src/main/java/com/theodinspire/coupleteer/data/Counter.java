@@ -12,17 +12,20 @@ import java.util.*;
 public class Counter<T> implements Serializable {
     protected Map<T, Integer> map = new HashMap<>();
     protected int size = 0;
-    protected int base = 1;
     
     public Counter() { }
     
     public boolean count(T key) {
-        ++size;
+        return countWithWeight(key, 1);
+    }
+    
+    public boolean countWithWeight(T key, int weight) {
+        size += weight;
         if (map.containsKey(key)) {
-            map.put(key, map.get(key) + base);
+            map.put(key, map.get(key) + weight);
             return true;
         } else {
-            map.put(key, base);
+            map.put(key, weight);
             return false;
         }
     }
@@ -57,9 +60,6 @@ public class Counter<T> implements Serializable {
         
         return null;
     }
-    
-    public void setBase(int base) { this.base = base; }
-    public int getBase() { return base; }
     
     public int getSize() { return size; }
 }
