@@ -96,17 +96,19 @@ public class Coupleteer {
             If not, there'd be one remaining, and new line has ten syllables.   */
         List<Word> rhymes = new ArrayList<>(rhymeDictionary.get(lastWord.getRhyme()));
         Word rhyme;
-        int attempts = DEFAULT_ATTEMPTS;
-    
-        do {
-            rhyme = rhymes.get(Utilities.getRandomInt(rhymes.size()));
-            --attempts;
+        
+        if (rhymes.size() == 1) {
+            rhyme = lastWord;
+        } else {
+            int pickIndex;
+            int lastWordIndex = rhymes.indexOf(lastWord);
+            do {
+                pickIndex = Utilities.getRandomInt(rhymes.size());
+            } while (pickIndex == lastWordIndex);
+            
+            rhyme = rhymes.get(pickIndex);
         }
-        while (!partsOfSpeech.getKeys().contains(rhyme.toString())
-               && rhyme.equals(lastWord) && attempts > 0);
-            /*  For clarity: Repeat attempt while the rhyme is not a Part of Speech tag,
-                nor the last word unless we've run out of replacement attempts
-             */
+        
     
         slSyllablesLeft -= rhyme.getRhythm().size();
         Stack<Word> wordStack = new Stack<>();
