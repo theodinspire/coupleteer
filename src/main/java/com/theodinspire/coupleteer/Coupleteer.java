@@ -39,20 +39,20 @@ public class Coupleteer {
     //  Get couplets
     public Couplet getCouplet() {
         //  Build the first line
-        int syllablesLeft = 11; //  Iambic pentameter with possible feminine ending
-        String previousPartOfSpeech = Tags.getStartOfLine();
+        int flSyllablesLeft = 11; //  Iambic pentameter with possible feminine ending
         StringBuilder firstLine = new StringBuilder();
+        String flPreviousPartOfSpeech = Tags.getStartOfLine();
         Word lastWord = null;
     
-        while (syllablesLeft > 1) { //  Final syllable OPTIONAL
+        while (flSyllablesLeft > 1) { //  Final syllable OPTIONAL
             Word word = null;
             int pickNewPOSCountdown = DEFAULT_ATTEMPTS;
             //  Get first next part of speech candidate
-            String nextPartOfSpeech = fore.getCounter(previousPartOfSpeech).getRandom();
+            String nextPartOfSpeech = fore.getCounter(flPreviousPartOfSpeech).getRandom();
         
             while (word == null) {
                 --pickNewPOSCountdown;
-                boolean shouldHaveInitialAccent = syllablesLeft % 2 == 0;
+                boolean shouldHaveInitialAccent = flSyllablesLeft % 2 == 0;
                 /*  For clarity: if the number of syllables remaining are odd
                     the next syllable should be unaccented, if even, accented   */
                 
@@ -62,7 +62,7 @@ public class Coupleteer {
                 for (Word option : options) {
                     Rhythm rhythm = option.getRhythm();
                     if (rhythm.size() == 0 || (rhythm.size() == 1 && PARTICLES.contains(nextPartOfSpeech))
-                        || (rhythm.getFirst() > 0 == shouldHaveInitialAccent && rhythm.size() <= syllablesLeft)) {
+                        || (rhythm.getFirst() > 0 == shouldHaveInitialAccent && rhythm.size() <= flSyllablesLeft)) {
                         /*  For clarity: If option does not have any syllables,
                             OR if the option only has one and the chosen POS could be a particle
                             OR, finally, if the option matches the required rhythm pattern
@@ -76,21 +76,21 @@ public class Coupleteer {
             
                 //  If we've not yet found a suitable candidate, pick a new part of speech
                 if (pickNewPOSCountdown == 0) {
-                    nextPartOfSpeech = fore.getCounter(previousPartOfSpeech).getRandom();
+                    nextPartOfSpeech = fore.getCounter(flPreviousPartOfSpeech).getRandom();
                     pickNewPOSCountdown = DEFAULT_ATTEMPTS;
                 }
             }
         
-            previousPartOfSpeech = nextPartOfSpeech;
+            flPreviousPartOfSpeech = nextPartOfSpeech;
             firstLine.append(word).append(" ");
         
             lastWord = word;
-            syllablesLeft -= word.getRhythm().size();
+            flSyllablesLeft -= word.getRhythm().size();
         }
     
         //  Second line!
         StringBuilder secondLine = new StringBuilder();
-        syllablesLeft = 11 - syllablesLeft;
+        int slSyllablesLeft = 11 - flSyllablesLeft;
         /*  If feminine ending was made there would be no syllables left,
             and so we must have a second line with a eleven syllables.
             If not, there'd be one remaining, and new line has ten syllables.   */
@@ -108,22 +108,22 @@ public class Coupleteer {
                 nor the last word unless we've run out of replacement attempts
              */
     
-        syllablesLeft -= rhyme.getRhythm().size();
+        slSyllablesLeft -= rhyme.getRhythm().size();
         Stack<Word> wordStack = new Stack<>();
         wordStack.push(rhyme);
         
         //  Assign a part of speech to the rhyming word, or if none are available, use Singular Proper Noun
-        previousPartOfSpeech = words.getRandomKeyForValueWithDefault(rhyme.toString(), Tags.NNP);
+        String slPreviousPartOfSpeech = words.getRandomKeyForValueWithDefault(rhyme.toString(), Tags.NNP);
     
         //  Works rather like a back to front version of the above
-        while (syllablesLeft > 0) {
+        while (slSyllablesLeft > 0) {
             Word word = null;
             int pickNewPOSCountdown = DEFAULT_ATTEMPTS;
-            String nextPartOfSpeech = back.getCounter(previousPartOfSpeech).getRandom();
+            String nextPartOfSpeech = back.getCounter(slPreviousPartOfSpeech).getRandom();
         
             while (word == null) {
                 --pickNewPOSCountdown;
-                boolean lastAccent = syllablesLeft % 2 == 0;
+                boolean lastAccent = flSyllablesLeft % 2 == 0;
                 String str = words.getCounter(nextPartOfSpeech).getRandom();
             
                 Set<Word> options = rhymeDictionary.getWordsByString(str);
@@ -131,7 +131,7 @@ public class Coupleteer {
                 for (Word option : options) {
                     Rhythm rhythm = option.getRhythm();
                     if (rhythm.size() == 0 || (rhythm.size() == 1 && PARTICLES.contains(nextPartOfSpeech))
-                        || (rhythm.getLast() > 0 == lastAccent && rhythm.size() <= syllablesLeft)) {
+                        || (rhythm.getLast() > 0 == lastAccent && rhythm.size() <= slSyllablesLeft)) {
                         /*  For clarity: If option does not have any syllables,
                             OR if the option only has one and the chosen POS could be a particle
                             OR, finally, if the option matches the required rhythm pattern
@@ -145,15 +145,15 @@ public class Coupleteer {
     
                 //  If we've not yet found a suitable candidate, pick a new part of speech
                 if (pickNewPOSCountdown == 0) {
-                    nextPartOfSpeech = back.getCounter(previousPartOfSpeech).getRandom();
+                    nextPartOfSpeech = back.getCounter(slPreviousPartOfSpeech).getRandom();
                     pickNewPOSCountdown = DEFAULT_ATTEMPTS;
                 }
             }
         
-            previousPartOfSpeech = nextPartOfSpeech;
+            slPreviousPartOfSpeech = nextPartOfSpeech;
             wordStack.push(word);
         
-            syllablesLeft -= word.getRhythm().size();
+            slSyllablesLeft -= word.getRhythm().size();
         }
     
         while (!wordStack.isEmpty()) secondLine.append(wordStack.pop()).append(" ");
