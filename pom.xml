@@ -4,7 +4,7 @@
 
   <groupId>com.theodinspire</groupId>
   <artifactId>coupleteer</artifactId>
-  <version>0.3</version>
+  <version>0.4</version>
   <packaging>jar</packaging>
 
   <name>coupleteer</name>
@@ -34,7 +34,7 @@
     <dependency>
       <groupId>org.jetbrains</groupId>
       <artifactId>annotations</artifactId>
-      <version>RELEASE</version>
+      <version>15.0</version>
     </dependency>
 
     <!-- Spring -->
