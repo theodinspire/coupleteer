@@ -145,9 +145,12 @@ Temporary Items
 !/src/main/resources/data/rhymingDictionary.ser
 !/src/main/resources/data/wordHoard.ser
 
+art/
 
 /src/main/resources/*/*.xml
 /.idea/codeStyleSettings.xml
 /.idea/dbnavigator.xml
 /src/main/resources/texts/
 .env
+reference.css
+test.html

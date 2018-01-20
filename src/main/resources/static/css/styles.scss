@@ -3,47 +3,77 @@
 $typeface: 'EB Garamond';
 
 //  Variables
-$backing: rgb(40, 77, 49);
-$backing-tint: 0.5;
+$typecolor: rgba(233, 233, 233, 1);
 
-$smallscreen: 800px;
+$medscreen: 801px;
+$largescreen: 1921px;
+
+// $sback = url('../img/back.s.jpg')
+$mback: url('../img/back.m.jpg');
+$lback: url('../img/back.j.jpg');
 
 //  Mixins
 
 //  Functions
-@function make-tint($color, $alpha) {
-  $tint: rgba($color, $alpha);
-  @return linear-gradient($tint, $tint);
-}
+// @function make-tint($color, $alpha) {
+//   $tint: rgba($color, $alpha);
+//   @return linear-gradient($tint, $tint);
+// }
 
 //  Styles
-body {
-  background: make-tint($backing, $backing-tint), url('../img/forest.jpg');
-  //background: url('../img/forest.jpg');
-  // background-repeat: no-repeat;
-  // background-position: center;
+html {
+  background: $mback no-repeat center center fixed;
 
-  @media (max-width: $smallscreen) {
-    background-size: contain;
-  }
-  @media (min-width: ($smallscreen + 1)) {
-    background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  font-family: $typeface, sans-serif;
+
+  @media screen and (min-width: $largescreen) {
+    background-image: $lback;
   }
 }
 
+// body {
+//   width: 100%;
+// }
+
 .container {
-  @media (max-width: $smallscreen) {
-    width: 100%;
-    margin: auto 0;
-  }
-  @media (min-width: ($smallscreen + 1)) {
-    width: 80%;
-      margin: 15% auto auto;
-  }
+  margin: 0 auto;
+  max-width: 67rem;
+  position: relative;
+  width: 100%;
+
+  padding: 0 20px;
+}
+
+nav {
+  background: rgba(#111111, 0.75);
+  display: block;
+  min-height: 15%;
+  height: 3.2rem;
+
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+.title {
+  display: inline;
+  font-size: 1.6rem;
+  line-height: 3.2rem;
+  text-decoration: none;
+}
+
+a.title {
+  color: $typecolor;
 }
 
 #couplet {
-  color: rgba(233, 233, 233, 1);
+  color: $typecolor;
   display: block;
   margin-bottom: 5px;
   font-size:  3em;

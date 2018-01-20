@@ -1,21 +1,40 @@
 @import url("https://fonts.googleapis.com/css?family=EB+Garamond:400,500i");
-body {
-  background: linear-gradient(rgba(40, 77, 49, 0.5), rgba(40, 77, 49, 0.5)), url("../img/forest.jpg"); }
-  @media (max-width: 800px) {
-    body {
-      background-size: contain; } }
-  @media (min-width: 801px) {
-    body {
-      background-size: cover; } }
+html {
+  background: url("../img/back.m.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: "EB Garamond", sans-serif; }
+  @media screen and (min-width: 1921px) {
+    html {
+      background-image: url("../img/back.j.jpg"); } }
 
-@media (max-width: 800px) {
-  .container {
-    width: 100%;
-    margin: auto 0; } }
-@media (min-width: 801px) {
-  .container {
-    width: 80%;
-    margin: 15% auto auto; } }
+.container {
+  margin: 0 auto;
+  max-width: 67rem;
+  position: relative;
+  width: 100%;
+  padding: 0 20px; }
+
+nav {
+  background: rgba(17, 17, 17, 0.75);
+  display: block;
+  min-height: 15%;
+  height: 3.2rem;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%; }
+
+.title {
+  display: inline;
+  font-size: 1.6rem;
+  line-height: 3.2rem;
+  text-decoration: none; }
+
+a.title {
+  color: #e9e9e9; }
 
 #couplet {
   color: #e9e9e9;

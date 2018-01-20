@@ -3,17 +3,28 @@
 <head>
   <meta charset="UTF-8" />
 
+  <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="/css/styles.css">
 
   <title>Coupleteer</title>
 </head>
-<body class="loading">
-  <div class="container">
-    <p id='couplet'>
-      <span class='couplet-line'>&nbsp;</span>
-      <span class='couplet-line'>&nbsp;</span>
-    </p>
-  </div>
+<body class="none">
+  <nav>
+    <div class="container">
+      <a class="title" href="/">Coupleteer</a>
+    </div>
+
+    <!-- Menu items -->
+  </nav>
+
+  <content>
+    <div class="container">
+      <p id='couplet'>
+        <span class='couplet-line'>&nbsp;</span>
+        <span class='couplet-line'>&nbsp;</span>
+      </p>
+    </div>
+  </content>
 
   <!-- Load couplet -->
   <script src="/js/load.js" charset="utf-8"></script>
