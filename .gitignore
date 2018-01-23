@@ -9,6 +9,7 @@
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/dictionaries
+.idea/codeStyles/
 
 # Sensitive or high-churn files:
 .idea/**/dataSources/
@@ -131,13 +132,25 @@ Temporary Items
 
 # End of https://www.gitignore.io/api/macos
 
+# Created by https://www.gitignore.io/api/sass
+
+### Sass ###
+.sass-cache/
+*.css.map
+
+# End of https://www.gitignore.io/api/sass
+
 #Developer Defined Ignores
 *.ser
 !/src/main/resources/data/rhymingDictionary.ser
 !/src/main/resources/data/wordHoard.ser
 
+art/
 
 /src/main/resources/*/*.xml
 /.idea/codeStyleSettings.xml
 /.idea/dbnavigator.xml
 /src/main/resources/texts/
+.env
+reference.css
+test.html

@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css?family=EB+Garamond:400,500i");
+html {
+  background: url("../img/back.m.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: "EB Garamond", sans-serif;
+  color: #e9e9e9; }
+  @media screen and (min-width: 1921px) {
+    html {
+      background-image: url("../img/back.j.jpg"); } }
+
+a {
+  text-decoration: none; }
+
+.container {
+  margin: 0 auto;
+  max-width: 67rem;
+  position: relative;
+  width: 100%;
+  padding: 0 20px; }
+
+nav {
+  background: rgba(17, 17, 17, 0.75);
+  display: block;
+  min-height: 3.2rem;
+  font-size: 1.6rem;
+  line-height: 3.2rem;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%; }
+  nav .title {
+    display: block;
+    text-decoration: none;
+    float: left; }
+  nav a.title {
+    color: #e9e9e9; }
+    nav a.title:hover {
+      color: #e3ffdd; }
+  nav .menu {
+    display: block;
+    float: right; }
+
+.button, a.button {
+  background: #257737;
+  color: #e9e9e9;
+  padding: 0 1rem;
+  border-radius: 0.3rem;
+  font-size: 1.6rem; }
+
+.ghost, a.ghost {
+  background: #85a58c;
+  color: #111111; }
+
+#couplet {
+  padding: 10rem 0 12rem;
+  font-size: 3em; }
+  #couplet p {
+    display: block;
+    margin-bottom: 5px;
+    font-family: "EB Garamond", cursive;
+    font-weight: 500;
+    font-style: italic; }
+  #couplet #refresh {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 2.4rem;
+    border: #257737 solid 2px;
+    border-radius: 0.4rem;
+    background: rgba(37, 119, 55, 0.67); }
+
+#info {
+  margin-top: 3rem;
+  padding: 0.6rem 1rem;
+  background-color: rgba(17, 17, 17, 0.67);
+  border-radius: 0.6rem;
+  font-size: 1.6rem; }
+  #info p {
+    display: block;
+    margin: 1rem 3rem; }
+  #info p.copyright {
+    margin-top: 2.4rem;
+    font-size: 1rem; }
+  #info a {
+    color: #257737; }
+  #info a:visited, #info a:hover {
+    color: #85a58c; }
+
+.couplet-line {
+  display: block;
+  opacity: 1;
+  padding: 0;
+  margin: 0;
+  transform: translateX(0);
+  transition: opacity 180ms ease, transform 240ms ease; }
+  .couplet-line:first-of-type::after {
+    content: "\A";
+    white-space: pre;
+    transition-delay: 0ms; }
+  .couplet-line:nth-of-type(2) {
+    transition-delay: 120ms; }
+
+#refresh {
+  opacity: 1;
+  transition: opacity 240ms ease;
+  transition-delay: 240ms;
+  cursor: pointer; }
+
+.hidden {
+  opacity: 0 !important; }
+
+.loading .couplet-line {
+  opacity: 0;
+  transition: opacity 240ms ease, transform 240ms ease; }
+  .loading .couplet-line:nth-of-type(2) {
+    transition-delay: 120ms; }
+
+/*# sourceMappingURL=styles.css.map */

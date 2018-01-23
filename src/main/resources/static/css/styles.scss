@@ -1,0 +1,203 @@
+//  Imports
+@import url('https://fonts.googleapis.com/css?family=EB+Garamond:400,500i');
+$typeface: 'EB Garamond';
+
+//  Variables
+$forecolor: #e9e9e9;
+$backcolor: #111111;
+$btncolor: #257737;
+$btnghost: #85a58c;
+
+$medscreen: 801px;
+$largescreen: 1921px;
+
+$mback: url('../img/back.m.jpg');
+$lback: url('../img/back.j.jpg');
+
+//  Mixins
+
+//  Functions
+
+//  Styles
+html {
+  background: $mback no-repeat center center fixed;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  font-family: $typeface, sans-serif;
+  color: $forecolor;
+
+  @media screen and (min-width: $largescreen) {
+    background-image: $lback;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 67rem;
+  position: relative;
+  width: 100%;
+
+  padding: 0 20px;
+}
+
+nav {
+  background: rgba($backcolor, 0.75);
+  display: block;
+  min-height: 3.2rem;
+  // height: 3.2rem;
+
+  font-size: 1.6rem;
+  line-height: 3.2rem;
+
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+
+  .title {
+    display: block;
+    text-decoration: none;
+    float: left;
+  }
+
+  a.title {
+    color: $forecolor;
+
+    &:hover {
+      color: #e3ffdd;
+    }
+  }
+
+  .menu {
+    display: block;
+    float: right;
+  }
+}
+
+.button, a.button {
+  background: $btncolor;
+  color: $forecolor;
+
+  padding: 0 1rem;
+  border-radius: 0.3rem;
+
+  font-size: 1.6rem;
+}
+
+.ghost, a.ghost {
+  background: $btnghost;
+  color: $backcolor;
+}
+
+#couplet {
+  padding: 10rem 0 12rem;
+  font-size:  3em;
+
+  p {
+    display: block;
+    margin-bottom: 5px;
+    font-family: $typeface, cursive;
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  #refresh {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    // opacity: 1;
+
+    font-size: 2.4rem;
+
+    border: $btncolor solid 2px;
+    border-radius: 0.4rem;
+    background: rgba($btncolor, 0.67);
+
+    // box-shadow: 2px 2px 2px 1px rgba($backcolor, 0.25);
+  }
+}
+
+#info {
+  margin-top: 3rem;
+  padding: 0.6rem 1rem;
+
+  background-color: rgba($backcolor, 0.67);
+  border-radius: 0.6rem;
+
+  font-size: 1.6rem;
+
+  p {
+    display: block;
+    margin: 1rem 3rem;
+  }
+
+  p.copyright {
+    margin-top: 2.4rem;
+
+    font-size: 1rem;
+  }
+
+  a {
+    color: $btncolor;
+  }
+
+  a:visited, a:hover {
+    color: $btnghost;
+  }
+}
+
+.couplet-line {
+  display: block;
+  opacity: 1;
+  padding: 0;
+  margin: 0;
+
+  transform: translateX(0);
+
+  transition: opacity 180ms ease, transform 240ms ease;
+
+  &:first-of-type::after {
+    content: "\A";
+    white-space: pre;
+    transition-delay: 0ms;
+  }
+
+  &:nth-of-type(2) {
+    transition-delay: 120ms;
+  }
+}
+
+#refresh {
+  opacity: 1;
+  transition: opacity 240ms ease;
+  transition-delay: 240ms;
+
+  cursor: pointer;
+}
+
+.hidden {
+  opacity: 0 !important;
+}
+
+.loading {
+  .couplet-line {
+    opacity: 0;
+    // transform: translateX(-25vw);
+    // transition-delay: 0ms;
+    transition: opacity 240ms ease, transform 240ms ease;
+
+    &:nth-of-type(2) {
+      transition-delay: 120ms;
+    }
+  }
+}

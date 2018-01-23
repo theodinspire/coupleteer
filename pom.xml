@@ -4,7 +4,7 @@
 
   <groupId>com.theodinspire</groupId>
   <artifactId>coupleteer</artifactId>
-  <version>0.3</version>
+  <version>0.4</version>
   <packaging>jar</packaging>
 
   <name>coupleteer</name>
@@ -31,22 +31,34 @@
     </dependency>
 
     <!-- Jettison those brains -->
-    <dependency>
+    <!-- <dependency>
       <groupId>org.jetbrains</groupId>
       <artifactId>annotations</artifactId>
-      <version>RELEASE</version>
-    </dependency>
+      <version>15.0</version>
+    </dependency> -->
 
     <!-- Spring -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-thymeleaf</artifactId>
-    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
       <optional>true</optional>
     </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-autoconfigure</artifactId>
+    </dependency>
+    <!-- <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency> -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
@@ -69,7 +81,7 @@
     -->
 
     <!-- BootStrap -->
-    <dependency>
+    <!-- <dependency>
       <groupId>org.webjars</groupId>
       <artifactId>bootstrap</artifactId>
       <version>3.3.7</version>
@@ -78,7 +90,7 @@
       <groupId>org.webjars</groupId>
       <artifactId>jquery</artifactId>
       <version>3.2.1</version>
-    </dependency>
+    </dependency> -->
   </dependencies>
 
   <build>
